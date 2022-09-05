@@ -5,6 +5,13 @@
 -->
 <html>
     <head>
+        <!--
+            - dentro de la etiqueta meta usamos "modificaciones", 
+            uno de estos es charset que sirve parael uso de ñ y tildes 
+            - la etiqueta meta es especial solo va <meta />;
+            no necesita etiqueta de cierre 
+        -->
+        <meta charset="utf-8"/>
         <!-- 
             en el head esta el codigo que no hace parte de lo visual de una pagina web
             la etiqueta "title" podemos nombrar la pestaña del explorador
@@ -16,11 +23,12 @@
             // todo lo que este dentro de la etiqueta script  de html es de manera predeterminada codigo de JavaScrip
             
             //la instruccion let declara una variable de alcance local con ambito del bloque, opcionalmente, puede ser inicializada con algun valor 
-            let nombre= "jaja"
+            let nombre= ""
             alert(nombre)
 
             nombre = prompt("cual es tu nombre")
-            alert(nombre)
+            // con el + realizamos concatenación; entre comillas a texto
+            alert("Bienvenido al mundo de programacion " + nombre)
 
 
 
