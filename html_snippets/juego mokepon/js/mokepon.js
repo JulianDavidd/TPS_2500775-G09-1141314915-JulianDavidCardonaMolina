@@ -1,5 +1,9 @@
 let ataqueJugador
 let ataqueEnemigo
+let vidasJugador = 3
+let vidasEnemigo = 3
+
+
 
 function iniciarJuego(){
     let botonMascotaJugador=document.getElementById('boton_mascota')
@@ -72,26 +76,60 @@ function ataqueAleatorioEnemigo() {
 
     if (ataqueAleatorio == 1) {
         ataqueEnemigo = "FUEGO"
-    }else if (ataqueAleatorio == 2) {
+    }
+    else if (ataqueAleatorio == 2) {
         ataqueEnemigo = "AGUA"
     }else {
         ataqueEnemigo = "TIERRA"
+        combate()
     } 
 
     crearMensaje()
 
 }
 
-function crearMensaje() {
+function combate(){
+    let spanVidasJugador = document.getElementById("vidas-jugador")
+    let spanVidasEnemigo = document.getElementById("vidas-enemigo")
+    
+    
+    if(ataqueEnemigo == ataqueJugador) {
+        crearMensaje(" EMPATE ") 
+    } 
+     else if(ataqueJugador =='FUEGO' && ataqueEnemigo=='TIERRA') {
+        crearMensaje(" GANASTE ")
+        vidasEnemigo--
+        spanVidasEnemigo.innerHTML = vidasEnemigo
+    } 
+     else if(ataqueJugador =='AGUA' && ataqueEnemigo =='FUEGO') {
+        crearMensaje(" GANASTE ")
+        vidasEnemigo--
+        spanVidasEnemigo.innerHTML = vidasEnemigo
+    } 
+    else if(ataqueJugador =='TIERRA' && ataqueEnemigo =='AGUA') {
+        crearMensaje("GANASTE")
+        vidasEnemigo--
+        spanVidasEnemigo.innerHTML = vidasEnemigo
+    } 
+    else {
+        crearMensaje(" PERDISTE ")
+        vidasJugador--
+        spanVidasJugador.innerHTML = vidasJugador
+    }
+
+}
+
+
+function crearMensaje(resultado) {
     let sectionMensajes =document.getElementById("mensajes")
 
 
     let parrafo = document.createElement("p")
-    parrafo.innerHTML = "Tu mascota atacó con" + ataqueJugador, + "la mascota del enemigo atacó con" + ataqueEnemigo + "pendiente"
+    parrafo.innerHTML = "Tu mascota atacó con" + ataqueJugador, + "la mascota del enemigo atacó con" + ataqueEnemigo + "" + resultado
 
     sectionMensajes.appendChild(parrafo)
 }
-
+ 
 function aleatorio(min,max) {
     return Math.floor(Math.random() *  (max - min + 1) +min)
 }
